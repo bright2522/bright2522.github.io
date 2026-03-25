@@ -209,6 +209,20 @@
       <div class="skill-level-bar"><div class="skill-level-fill" data-width="55%"></div></div>
       <div class="skill-level-text">Beginner-Intermediate · Web Structure</div>
     </div>
+    <div class="skill-block reveal" style="transition-delay:0.3s">
+      <span class="skill-icon">🐙</span>
+      <div class="skill-name">GitHub</div>
+      <div class="skill-desc">ใช้ Git และ GitHub ในการจัดการ Source Code บันทึก Version ของโปรเจกต์ และ Deploy เว็บผ่าน GitHub Pages</div>
+      <div class="skill-level-bar"><div class="skill-level-fill" data-width="50%"></div></div>
+      <div class="skill-level-text">Beginner-Intermediate · Version Control</div>
+    </div>
+    <div class="skill-block reveal" style="transition-delay:0.4s">
+      <span class="skill-icon">🕹️</span>
+      <div class="skill-name">Unity</div>
+      <div class="skill-desc">ใช้ Unity Engine พัฒนาเกม 2D/3D ผ่านการแข่งขัน Game Jam ออกแบบ Scene จัดการ Physics และสร้าง Gameplay ครบวงจร</div>
+      <div class="skill-level-bar"><div class="skill-level-fill" data-width="60%"></div></div>
+      <div class="skill-level-text">Intermediate · Game Engine</div>
+    </div>
   </div>
 </section>
 
@@ -223,7 +237,7 @@
       <em style="font-size:0.85rem;">Always open to collaborating, sharing ideas, and learning new things together.</em>
     </p>
     <div class="contact-links">
-      <a href="mailto:brightpungporn37@gmail.com" class="btn-primary">✉ ส่ง Email</a>
+      <a href="/cdn-cgi/l/email-protection#2c4e5e454b44585c59424b5c435e421f1b6c4b414d4540024f4341" class="btn-primary">✉ ส่ง Email</a>
       <a href="https://github.com/bright2522" target="_blank" class="btn-outline">GitHub →</a>
     </div>
   </div>
@@ -231,7 +245,7 @@
 <footer>
   <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
   <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
-</footer><script>
+</footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -254,14 +268,6 @@
   },{threshold:0.12});
   reveals.forEach(r=>obs.observe(r));
 
-
   const skillObserver=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){e.target.querySelectorAll('.skill-level-fill').forEach(b=>{b.style.width=b.dataset.width;});}
-    });
-  },{threshold:0.3});
-  document.querySelectorAll('#skills').forEach(s=>skillObserver.observe(s));
-
-</script>
-</body>
-</html>
+      if(e.isIntersecting){e.target.querySelectorAll('.skill-level-fill').forEach(b=>{b.style.widt
