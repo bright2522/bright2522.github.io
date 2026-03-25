@@ -100,6 +100,27 @@
   .value-title { font-family:var(--font-display);font-size:1.5rem;letter-spacing:0.04em;margin-bottom:12px; }
   .value-desc { font-size:0.85rem;line-height:1.75;color:var(--muted); }
 
+  /* SOFT SKILLS */
+  #soft-skills { padding:100px 48px;background:var(--surface);border-bottom:1px solid var(--border); }
+  .skills-flex { display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px; }
+  .skill-card { padding:36px 32px;border:1px solid var(--border);background:var(--bg);position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s; }
+  .skill-card:hover { border-color:rgba(255,60,0,0.3);transform:translateY(-3px); }
+  .skill-card::before { content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--accent);transition:height 0.4s ease; }
+  .skill-card:hover::before { height:100%; }
+  .skill-icon { font-size:2rem;margin-bottom:16px;display:block; }
+  .skill-title { font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.04em;margin-bottom:10px; }
+  .skill-desc { font-size:0.84rem;line-height:1.8;color:var(--muted); }
+
+  /* INTERESTS */
+  #interests { padding:100px 48px;border-bottom:1px solid var(--border); }
+  .interests-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:56px; }
+  .interest-item { padding:32px 36px;border:1px solid var(--border);display:flex;align-items:flex-start;gap:24px;transition:border-color 0.3s,background 0.3s; }
+  .interest-item:hover { border-color:rgba(255,60,0,0.3);background:rgba(255,60,0,0.03); }
+  .interest-icon-wrap { width:52px;height:52px;background:rgba(255,60,0,0.08);border:1px solid rgba(255,60,0,0.15);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0; }
+  .interest-content {}
+  .interest-title { font-family:var(--font-display);font-size:1.5rem;letter-spacing:0.04em;margin-bottom:8px; }
+  .interest-desc { font-size:0.84rem;line-height:1.75;color:var(--muted); }
+
   /* CTA BOTTOM */
   #about-cta { padding:80px 48px;background:var(--surface);text-align:center; }
   .about-cta-title { font-family:var(--font-display);font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:0.03em;margin-bottom:24px; }
@@ -112,6 +133,8 @@
     #identity{grid-template-columns:1fr;padding:60px 24px;gap:48px;}
     #timeline-section{padding:60px 24px;} .tl-grid{grid-template-columns:1fr;}
     #values{padding:60px 24px;} .values-grid{grid-template-columns:1fr;}
+    #soft-skills{padding:60px 24px;} .skills-flex{grid-template-columns:1fr;}
+    #interests{padding:60px 24px;} .interests-grid{grid-template-columns:1fr;}
     #about-cta{padding:60px 24px;}
     footer{flex-direction:column;gap:10px;text-align:center;padding:24px;}
   }
@@ -120,16 +143,18 @@
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div><nav>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
   <a href="index.html" class="nav-logo">W<span>.</span>S</a>
   <ul class="nav-links">
-    <li><a href="index.html" >Home</a></li>
-    <li><a href="about.html" class='active'>เกี่ยวกับ</a></li>
-    <li><a href="index.html#skills" >ทักษะ</a></li>
-    <li><a href="portfolio.html" >ผลงาน</a></li>
-    <li><a href="index.html#contact" >ติดต่อ</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">เกี่ยวกับ</a></li>
+    <li><a href="index.html#skills">ทักษะ</a></li>
+    <li><a href="portfolio.html">ผลงาน</a></li>
+    <li><a href="index.html#contact">ติดต่อ</a></li>
   </ul>
 </nav>
+
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-bg">ABOUT ME</div>
@@ -160,8 +185,10 @@
       I'm a student who competes in game jams, writes code daily, and believes every bug fixed is a lesson learned. My proudest moment: 2nd place out of 38 teams in Game Dev Tournament.
     </p>
     <div class="about-info-grid">
-      <div class="info-item"><div class="info-label">สายการเรียน</div><div class="info-val">วิทย์-คณิต</div></div>
-      <div class="info-item"><div class="info-label">ความสนใจ</div><div class="info-val">Game Dev, Coding</div></div>
+      <div class="info-item"><div class="info-label">วันเกิด</div><div class="info-val">28 มี.ค. 2552</div></div>
+      <div class="info-item"><div class="info-label">อายุ</div><div class="info-val">17 ปี</div></div>
+      <div class="info-item"><div class="info-label">สัญชาติ</div><div class="info-val">ไทย 🇹🇭</div></div>
+      <div class="info-item"><div class="info-label">แผนการเรียน</div><div class="info-val">วิทยาศาสตร์-คณิตศาสตร์</div></div>
       <div class="info-item"><div class="info-label">ภาษาที่ใช้</div><div class="info-val">Python · C# · HTML</div></div>
       <div class="info-item"><div class="info-label">Tools</div><div class="info-val">Unity · PyCharm</div></div>
       <div class="info-item"><div class="info-label">Email</div><div class="info-val" style="font-size:0.78rem;">brightpungporn37@gmail.com</div></div>
@@ -242,6 +269,69 @@
   </div>
 </section>
 
+<!-- SOFT SKILLS -->
+<section id="soft-skills">
+  <div class="reveal">
+    <div class="section-eyebrow">ทักษะทางสังคม / Soft Skills</div>
+    <h2 class="section-title">ทักษะที่<br>ติดตัว.</h2>
+  </div>
+  <div class="skills-flex">
+    <div class="skill-card reveal">
+      <span class="skill-icon">🤝</span>
+      <div class="skill-title">Teamwork & Communication</div>
+      <p class="skill-desc">จากการแข่งขัน Game Jam หลายรายการ ผมฝึกฝนการทำงานร่วมกันในทีมและการสื่อสารที่ชัดเจน เพื่อให้ทุกคนเข้าใจเป้าหมายเดียวกันและส่งมอบงานได้ตรงเวลา</p>
+    </div>
+    <div class="skill-card reveal" style="transition-delay:0.1s">
+      <span class="skill-icon">📚</span>
+      <div class="skill-title">Self-Learning</div>
+      <p class="skill-desc">ผมเรียนรู้สิ่งใหม่ด้วยตัวเองอยู่ตลอด ไม่ว่าจะเป็น Unity, C# หรือแนวคิดใหม่ๆ ด้าน Software ทุกโปรเจกต์คือโอกาสศึกษาสิ่งที่ไม่เคยรู้มาก่อน</p>
+    </div>
+    <div class="skill-card reveal" style="transition-delay:0.2s">
+      <span class="skill-icon">🧠</span>
+      <div class="skill-title">Critical Thinking</div>
+      <p class="skill-desc">การแก้บัคและออกแบบระบบเกมสอนให้ผมคิดวิเคราะห์ปัญหาอย่างเป็นระบบ มองหา root cause และหาทางออกที่ยั่งยืนแทนการแก้ไขชั่วคราว</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <div class="reveal">
+    <div class="section-eyebrow">ความสนใจ / Interests</div>
+    <h2 class="section-title">สิ่งที่<br>ชอบ.</h2>
+  </div>
+  <div class="interests-grid">
+    <div class="interest-item reveal">
+      <div class="interest-icon-wrap">💻</div>
+      <div class="interest-content">
+        <div class="interest-title">Programmer</div>
+        <p class="interest-desc">ผมสนุกกับการเขียนโค้ดและแก้ปัญหาผ่าน Logic การโปรแกรมมิ่งสอนให้ผมคิดอย่างเป็นขั้นตอนและสร้างสิ่งที่จับต้องได้จากศูนย์</p>
+      </div>
+    </div>
+    <div class="interest-item reveal" style="transition-delay:0.1s">
+      <div class="interest-icon-wrap">⚙️</div>
+      <div class="interest-content">
+        <div class="interest-title">Software Development</div>
+        <p class="interest-desc">ผมสนใจกระบวนการพัฒนา Software ตั้งแต่การออกแบบ Architecture ไปจนถึงการ Deploy และ Maintain โปรเจกต์ในระยะยาว</p>
+      </div>
+    </div>
+    <div class="interest-item reveal" style="transition-delay:0.05s">
+      <div class="interest-icon-wrap">🚀</div>
+      <div class="interest-content">
+        <div class="interest-title">Software Engineer</div>
+        <p class="interest-desc">เส้นทางที่ผมมุ่งหวัง การเป็น Software Engineer คือการนำทักษะทางเทคนิคมาสร้างระบบที่แก้ปัญหาจริงในโลกจริง</p>
+      </div>
+    </div>
+    <div class="interest-item reveal" style="transition-delay:0.15s">
+      <div class="interest-icon-wrap">🔒</div>
+      <div class="interest-content">
+        <div class="interest-title">Cybersecurity</div>
+        <p class="interest-desc">ความปลอดภัยดิจิทัลเป็นอีกด้านที่ผมสนใจ การเข้าใจช่องโหว่และการป้องกันระบบทำให้เราสร้าง Software ที่แข็งแกร่งและน่าเชื่อถือมากขึ้น</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section id="about-cta">
   <div class="reveal">
@@ -253,11 +343,13 @@
     </div>
   </div>
 </section>
+
 <footer>
   <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
   <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
-</footer><script>
+</footer>
 
+<script>
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
@@ -278,8 +370,6 @@
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
   },{threshold:0.12});
   reveals.forEach(r=>obs.observe(r));
-
-
 </script>
 </body>
 </html>
