@@ -123,16 +123,18 @@
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div><nav>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
   <a href="index.html" class="nav-logo">W<span>.</span>S</a>
   <ul class="nav-links">
     <li><a href="index.html" class='active'>Home</a></li>
-    <li><a href="about.html" >เกี่ยวกับ</a></li>
-    <li><a href="index.html#skills" >ทักษะ</a></li>
-    <li><a href="portfolio.html" >ผลงาน</a></li>
-    <li><a href="index.html#contact" >ติดต่อ</a></li>
+    <li><a href="about.html">เกี่ยวกับ</a></li>
+    <li><a href="index.html#skills">ทักษะ</a></li>
+    <li><a href="portfolio.html">ผลงาน</a></li>
+    <li><a href="index.html#contact">ติดต่อ</a></li>
   </ul>
 </nav>
+
 <section id="hero">
   <div class="hero-bg-text">GAME DEV</div>
   <div class="hero-content">
@@ -237,37 +239,55 @@
       <em style="font-size:0.85rem;">Always open to collaborating, sharing ideas, and learning new things together.</em>
     </p>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#2c4e5e454b44585c59424b5c435e421f1b6c4b414d4540024f4341" class="btn-primary">✉ ส่ง Email</a>
+      <a href="mailto:your@email.com" class="btn-primary">✉ ส่ง Email</a>
       <a href="https://github.com/bright2522" target="_blank" class="btn-outline">GitHub →</a>
     </div>
   </div>
 </section>
+
 <footer>
   <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
   <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
-</footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+</footer>
 
+<script>
+  // Cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-  function animateCursor(){
-    cursor.style.left=mx+'px';cursor.style.top=my+'px';
-    rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
-    ring.style.left=rx+'px';ring.style.top=ry+'px';
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.6)');
-    el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scale(1)');
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.style.transform = 'translate(-50%,-50%) scale(1.6)');
+    el.addEventListener('mouseleave', () => ring.style.transform = 'translate(-50%,-50%) scale(1)');
   });
-  const reveals=document.querySelectorAll('.reveal');
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-  },{threshold:0.12});
-  reveals.forEach(r=>obs.observe(r));
 
-  const skillObserver=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){e.target.querySelectorAll('.skill-level-fill').forEach(b=>{b.style.widt
+  // Reveal animation
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => revealObs.observe(r));
+
+  // Skill bar animation
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-level-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width;
+        });
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.skill-block').forEach(b => skillObs.observe(b));
+</script>
+</body>
+</html>
