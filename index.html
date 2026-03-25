@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — วิทวัส แซ่ลิ้ม</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sarabun:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #0a0a0a; --surface: #111111; --surface2: #1a1a1a;
+    --accent: #ff3c00; --accent2: #ffb800;
+    --text: #f0ece4; --muted: #888; --border: rgba(255,255,255,0.07);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Sarabun', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; cursor: none; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.4;
+  }
+  .cursor { width:12px;height:12px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%); }
+  .cursor-ring { width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0.6;transition:transform 0.18s ease; }
+  nav {
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);background:rgba(10,10,10,0.85);
+  }
+  .nav-logo { font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.08em;color:var(--text);text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex;gap:36px;list-style:none; }
+  .nav-links a { font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+  .btn-primary { display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:14px 28px;transition:background 0.2s,transform 0.2s; }
+  .btn-primary:hover { background:#e03500;transform:translateY(-2px); }
+  .btn-outline { display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(240,236,228,0.25);color:var(--text);font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:14px 28px;transition:border-color 0.2s,transform 0.2s; }
+  .btn-outline:hover { border-color:var(--accent);color:var(--accent);transform:translateY(-2px); }
+  .section-eyebrow { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:12px; }
+  .section-eyebrow::after { content:'';flex:1;height:1px;background:var(--border); }
+  .section-title { font-family:var(--font-display);font-size:clamp(42px,5vw,72px);line-height:0.95;letter-spacing:0.02em;margin-bottom:32px; }
+  .reveal { opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal.visible { opacity:1;transform:translateY(0); }
+  footer { padding:28px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center; }
+  .footer-copy { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted); }
+  .footer-made { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--muted); }
+  .footer-made span { color:var(--accent); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+
+  #hero { min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 48px 80px;gap:60px;overflow:hidden;position:relative; }
+  .hero-bg-text { position:absolute;font-family:var(--font-display);font-size:clamp(120px,18vw,240px);color:rgba(255,60,0,0.04);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:-0.02em;z-index:0; }
+  .hero-content { position:relative;z-index:1; }
+  .hero-tag { display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp 0.7s 0.2s forwards; }
+  .hero-tag::before { content:'';display:block;width:32px;height:1px;background:var(--accent); }
+  .hero-name { font-family:var(--font-display);font-size:clamp(56px,7vw,110px);line-height:0.92;letter-spacing:0.02em;margin-bottom:28px;opacity:0;animation:fadeUp 0.7s 0.35s forwards; }
+  .hero-name .line2 { color:var(--accent); }
+  .hero-desc { font-size:1.05rem;line-height:1.75;color:rgba(240,236,228,0.65);max-width:440px;margin-bottom:40px;opacity:0;animation:fadeUp 0.7s 0.5s forwards; }
+  .hero-cta { display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.7s 0.65s forwards; }
+  .hero-visual { position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:20px;opacity:0;animation:fadeIn 1s 0.6s forwards; }
+  .hero-avatar { width:100%;max-width:360px;aspect-ratio:1/0.7;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden; }
+  .hero-avatar::before { content:'';position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,rgba(255,60,0,0.14),transparent 70%); }
+  .hero-avatar-letter { font-family:var(--font-display);font-size:8rem;color:var(--accent);line-height:1;opacity:0.9;position:relative;z-index:1;text-shadow:0 0 60px rgba(255,60,0,0.5); }
+  .hero-avatar-ring { position:absolute;width:80%;height:130%;border:1px solid rgba(255,60,0,0.12);border-radius:50%; }
+  .hero-card { background:var(--surface);border:1px solid var(--border);padding:28px 32px;width:100%;max-width:360px; }
+  .hero-card-label { font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px; }
+  .hero-card-val { font-family:var(--font-display);font-size:2.2rem;letter-spacing:0.04em;color:var(--accent); }
+  .hero-card-sub { font-size:0.82rem;color:rgba(240,236,228,0.5);margin-top:4px; }
+  .hero-stat-row { display:flex;gap:16px;width:100%;max-width:360px; }
+  .hero-stat { flex:1;background:var(--surface);border:1px solid var(--border);padding:20px 22px; }
+  .stat-num { font-family:var(--font-display);font-size:1.8rem;color:var(--accent2); }
+  .stat-label { font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:4px; }
+  .scroll-hint { position:absolute;bottom:36px;left:48px;display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeIn 1s 1.2s forwards; }
+  .scroll-line { width:48px;height:1px;background:linear-gradient(to right,var(--accent),transparent);animation:scrollPulse 2s infinite; }
+
+  /* SKILLS */
+  #skills { padding:120px 48px;border-top:1px solid var(--border);background:var(--surface); }
+  .skills-header { margin-bottom:64px; }
+  .skills-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2px; }
+  .skill-block { background:var(--bg);padding:40px 36px;position:relative;overflow:hidden;transition:background 0.3s;cursor:default; }
+  .skill-block:hover { background:#141414; }
+  .skill-block::before { content:'';position:absolute;bottom:0;left:0;height:2px;background:var(--accent);width:0;transition:width 0.4s ease; }
+  .skill-block:hover::before { width:100%; }
+  .skill-icon { font-size:2rem;margin-bottom:20px;display:block; }
+  .skill-name { font-family:var(--font-display);font-size:2.4rem;letter-spacing:0.04em;margin-bottom:12px; }
+  .skill-desc { font-size:0.85rem;line-height:1.7;color:var(--muted);margin-bottom:24px; }
+  .skill-level-bar { height:2px;background:var(--border);position:relative; }
+  .skill-level-fill { position:absolute;top:0;left:0;bottom:0;background:linear-gradient(to right,var(--accent),var(--accent2));transition:width 1.2s cubic-bezier(0.16,1,0.3,1);width:0; }
+  .skill-level-text { font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;color:var(--muted);margin-top:8px;text-transform:uppercase; }
+
+  /* CONTACT */
+  #contact { padding:120px 48px;border-top:1px solid var(--border);background:var(--bg);text-align:center;position:relative;overflow:hidden; }
+  .contact-bg { position:absolute;font-family:var(--font-display);font-size:clamp(80px,14vw,200px);color:rgba(255,60,0,0.03);bottom:-20px;left:50%;transform:translateX(-50%);white-space:nowrap;pointer-events:none;letter-spacing:0.1em; }
+  .contact-title { font-family:var(--font-display);font-size:clamp(48px,7vw,100px);line-height:0.95;letter-spacing:0.02em;margin-bottom:24px; }
+  .contact-title span { color:var(--accent); }
+  .contact-sub { font-size:1rem;color:var(--muted);margin-bottom:48px;line-height:1.7; }
+  .contact-links { display:flex;justify-content:center;gap:16px;flex-wrap:wrap; }
+
+  /* Quick About Strip */
+  #quick-about { padding:80px 48px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center; }
+  .quick-about-text { font-size:1.1rem;line-height:1.85;color:rgba(240,236,228,0.65); }
+  .quick-about-text strong { color:var(--text); }
+  .quick-about-right { display:flex;flex-direction:column;gap:16px;align-items:flex-start; }
+
+  @media(max-width:900px){
+    nav{padding:18px 24px;} .nav-links{gap:18px;}
+    #hero{grid-template-columns:1fr;padding:120px 24px 80px;} .hero-visual{align-items:stretch;}
+    #quick-about{grid-template-columns:1fr;padding:60px 24px;gap:36px;}
+    #skills{padding:80px 24px;} .skills-grid{grid-template-columns:1fr;}
+    #contact{padding:80px 24px;}
+    footer{flex-direction:column;gap:10px;text-align:center;padding:24px;}
+    .scroll-hint{left:24px;}
+  }
+
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div><nav>
+  <a href="index.html" class="nav-logo">W<span>.</span>S</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class='active'>Home</a></li>
+    <li><a href="about.html" >เกี่ยวกับ</a></li>
+    <li><a href="index.html#skills" >ทักษะ</a></li>
+    <li><a href="portfolio.html" >ผลงาน</a></li>
+    <li><a href="index.html#contact" >ติดต่อ</a></li>
+  </ul>
+</nav>
+<section id="hero">
+  <div class="hero-bg-text">GAME DEV</div>
+  <div class="hero-content">
+    <div class="hero-tag">Student / Game Developer / Coder</div>
+    <h1 class="hero-name">วิทวัส<br><span class="line2">แซ่ลิ้ม</span></h1>
+    <p class="hero-desc">
+      นักเรียนสายวิทย์-คณิต ผู้หลงใหลในการพัฒนาเกมและการเขียนโค้ด<br>
+      มีประสบการณ์แข่งขัน Game Jam ระดับประเทศ พร้อมเติบโตในวงการ Tech<br><br>
+      <em style="font-size:0.88rem;color:rgba(240,236,228,0.4);">Science-Math student with a passion for game development &amp; coding.</em>
+    </p>
+    <div class="hero-cta">
+      <a href="portfolio.html" class="btn-primary">↓ ดูผลงาน</a>
+      <a href="about.html" class="btn-outline">แนะนำตัว →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-avatar">
+      <div class="hero-avatar-ring"></div>
+      <div class="hero-avatar-letter">W</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Best Achievement</div>
+      <div class="hero-card-val">🥈 รองชนะเลิศ</div>
+      <div class="hero-card-sub">Game Dev Tournament — อันดับ 2 / 38 ทีม</div>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat"><div class="stat-num">4</div><div class="stat-label">Competitions</div></div>
+      <div class="hero-stat"><div class="stat-num">3</div><div class="stat-label">Languages</div></div>
+      <div class="hero-stat"><div class="stat-num">38</div><div class="stat-label">Teams beaten</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span class="scroll-line"></span>Scroll to explore</div>
+</section>
+
+<!-- Quick About Strip -->
+<section id="quick-about">
+  <div class="reveal quick-about-text">
+    <div class="section-eyebrow">ว่าด้วยตัวผม / In Brief</div>
+    ผมคือ <strong>วิทวัส แซ่ลิ้ม</strong> นักเรียนสายวิทย์-คณิตที่ไม่ได้หยุดแค่ในห้องเรียน
+    ผมใช้เวลาว่างพัฒนาเกม แข่งขัน Game Jam และเขียนโค้ดอย่างสม่ำเสมอ
+    เชื่อว่า <strong>ทุก Bug ที่แก้ได้คือบทเรียน</strong> และทุก Project คือโอกาสเติบโต
+  </div>
+  <div class="reveal quick-about-right" style="transition-delay:0.15s">
+    <a href="about.html" class="btn-outline" style="align-self:flex-start;">อ่านเพิ่มเติมเกี่ยวกับผม →</a>
+    <a href="portfolio.html" class="btn-outline" style="align-self:flex-start;">ดูผลงานทั้งหมด →</a>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-header reveal">
+    <div class="section-eyebrow">ทักษะ / Skills</div>
+    <h2 class="section-title">สิ่งที่<br>ผมทำได้.</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block reveal">
+      <span class="skill-icon">🐍</span>
+      <div class="skill-name">Python</div>
+      <div class="skill-desc">ภาษาหลักที่ใช้พัฒนาเกมและเขียนสคริปต์ เรียนรู้ผ่านค่าย Game Dev และโปรเจกต์ส่วนตัว ใช้ PyCharm เป็นหลัก</div>
+      <div class="skill-level-bar"><div class="skill-level-fill" data-width="72%"></div></div>
+      <div class="skill-level-text">Intermediate · Game Scripting</div>
+    </div>
+    <div class="skill-block reveal" style="transition-delay:0.1s">
+      <span class="skill-icon">🎮</span>
+      <div class="skill-name">C#</div>
+      <div class="skill-desc">ใช้สำหรับพัฒนาเกมใน Unity ผ่านการแข่งขัน Global Game Jam เขียน Logic ระบบเกมและ Gameplay Mechanics</div>
+      <div class="skill-level-bar"><div class="skill-level-fill" data-width="62%"></div></div>
+      <div class="skill-level-text">Intermediate · Unity / Game Logic</div>
+    </div>
+    <div class="skill-block reveal" style="transition-delay:0.2s">
+      <span class="skill-icon">🌐</span>
+      <div class="skill-name">HTML</div>
+      <div class="skill-desc">สร้างโครงสร้างเว็บไซต์พื้นฐาน สนใจด้าน Web Development เป็นจุดเริ่มต้นในการเรียนรู้ Frontend ต่อไป</div>
+      <div class="skill-level-bar"><div class="skill-level-fill" data-width="55%"></div></div>
+      <div class="skill-level-text">Beginner-Intermediate · Web Structure</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg">CONTACT</div>
+  <div class="reveal">
+    <div class="section-eyebrow" style="justify-content:center;margin-bottom:28px;">ติดต่อ / Get in Touch</div>
+    <h2 class="contact-title">มา<span>คุย</span><br>กันเลย.</h2>
+    <p class="contact-sub">
+      สนใจร่วมงาน แลกเปลี่ยนไอเดีย หรือแค่อยากทักทาย — ยินดีเสมอครับ!<br>
+      <em style="font-size:0.85rem;">Interested in collaborating, sharing ideas, or just saying hi — always welcome!</em>
+    </p>
+    <div class="contact-links">
+      <a href="mailto:brightpungporn37@gmail.com" class="btn-primary">✉ ส่ง Email</a>
+      <a href="https://github.com/bright2522" target="_blank" class="btn-outline">GitHub →</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
+  <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
+</footer><script>
+
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  function animateCursor(){
+    cursor.style.left=mx+'px';cursor.style.top=my+'px';
+    rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.6)');
+    el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scale(1)');
+  });
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.12});
+  reveals.forEach(r=>obs.observe(r));
+
+
+  const skillObserver=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.querySelectorAll('.skill-level-fill').forEach(b=>{b.style.width=b.dataset.width;});}
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('#skills').forEach(s=>skillObserver.observe(s));
+
+</script>
+</body>
+</html>

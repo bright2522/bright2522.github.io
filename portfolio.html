@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ผลงาน — วิทวัส แซ่ลิ้ม</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sarabun:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #0a0a0a; --surface: #111111; --surface2: #1a1a1a;
+    --accent: #ff3c00; --accent2: #ffb800;
+    --text: #f0ece4; --muted: #888; --border: rgba(255,255,255,0.07);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Sarabun', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; cursor: none; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.4;
+  }
+  .cursor { width:12px;height:12px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%); }
+  .cursor-ring { width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0.6;transition:transform 0.18s ease; }
+  nav {
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);background:rgba(10,10,10,0.85);
+  }
+  .nav-logo { font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.08em;color:var(--text);text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex;gap:36px;list-style:none; }
+  .nav-links a { font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+  .btn-primary { display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:14px 28px;transition:background 0.2s,transform 0.2s; }
+  .btn-primary:hover { background:#e03500;transform:translateY(-2px); }
+  .btn-outline { display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(240,236,228,0.25);color:var(--text);font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:14px 28px;transition:border-color 0.2s,transform 0.2s; }
+  .btn-outline:hover { border-color:var(--accent);color:var(--accent);transform:translateY(-2px); }
+  .section-eyebrow { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:12px; }
+  .section-eyebrow::after { content:'';flex:1;height:1px;background:var(--border); }
+  .section-title { font-family:var(--font-display);font-size:clamp(42px,5vw,72px);line-height:0.95;letter-spacing:0.02em;margin-bottom:32px; }
+  .reveal { opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal.visible { opacity:1;transform:translateY(0); }
+  footer { padding:28px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center; }
+  .footer-copy { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted); }
+  .footer-made { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--muted); }
+  .footer-made span { color:var(--accent); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+
+  .page-hero { min-height:50vh;display:flex;align-items:flex-end;padding:140px 48px 64px;border-bottom:1px solid var(--border);position:relative;overflow:hidden; }
+  .page-hero-bg { position:absolute;font-family:var(--font-display);font-size:clamp(100px,16vw,220px);color:rgba(255,60,0,0.035);top:50%;left:48px;transform:translateY(-50%);white-space:nowrap;pointer-events:none;z-index:0; }
+  .page-hero-content { position:relative;z-index:1; }
+  .page-eyebrow { font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:14px;opacity:0;animation:fadeUp 0.6s 0.1s forwards; }
+  .page-eyebrow::before { content:'';width:32px;height:1px;background:var(--accent); }
+  .page-title { font-family:var(--font-display);font-size:clamp(60px,9vw,130px);line-height:0.9;letter-spacing:0.02em;opacity:0;animation:fadeUp 0.7s 0.25s forwards; }
+  .page-title span { color:var(--accent); }
+  .port-meta { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;color:var(--muted);margin-top:24px;opacity:0;animation:fadeUp 0.6s 0.4s forwards; }
+
+  /* FEATURED */
+  #featured { padding:0;border-bottom:1px solid var(--border); }
+  .featured-card { display:grid;grid-template-columns:1fr 1fr;min-height:520px; }
+  .featured-card-left { padding:72px 56px;background:var(--surface);display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--border); }
+  .featured-card-right { padding:72px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden; }
+  .featured-card-right::before { content:'01';font-family:var(--font-display);font-size:18rem;color:rgba(255,60,0,0.04);position:absolute;right:-20px;bottom:-40px;line-height:1;pointer-events:none; }
+  .feat-badge { display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;padding:6px 14px;background:rgba(255,184,0,0.12);color:var(--accent2);border:1px solid rgba(255,184,0,0.3);margin-bottom:24px;align-self:flex-start; }
+  .feat-title { font-family:var(--font-display);font-size:clamp(36px,5vw,64px);line-height:0.95;letter-spacing:0.02em;margin-bottom:16px; }
+  .feat-rank { font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.12em;color:var(--accent);margin-bottom:28px; }
+  .feat-desc { font-size:0.92rem;line-height:1.85;color:rgba(240,236,228,0.6);margin-bottom:32px; }
+  .feat-tags { display:flex;flex-wrap:wrap;gap:8px; }
+  .tag { font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 10px; }
+  .feat-stat-row { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:auto; }
+  .feat-stat { border-top:1px solid var(--border);padding-top:20px; }
+  .feat-stat-num { font-family:var(--font-display);font-size:2.2rem;color:var(--accent2);line-height:1; }
+  .feat-stat-label { font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:4px; }
+
+  /* OTHER PROJECTS */
+  #other-projects { padding:100px 48px; }
+  .other-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px; }
+  .proj-card { background:var(--surface);padding:40px 36px 36px;border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s;display:flex;flex-direction:column; }
+  .proj-card:hover { border-color:rgba(255,60,0,0.3);transform:translateY(-4px); }
+  .proj-num { font-family:var(--font-display);font-size:4.5rem;color:rgba(255,60,0,0.06);line-height:1;margin-bottom:-12px; }
+  .proj-badge { display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;padding:4px 12px;margin-bottom:16px;align-self:flex-start; }
+  .badge-silver { background:rgba(180,180,180,0.1);color:#aaa;border:1px solid rgba(180,180,180,0.2); }
+  .badge-orange { background:rgba(255,60,0,0.1);color:var(--accent);border:1px solid rgba(255,60,0,0.2); }
+  .badge-green { background:rgba(100,200,100,0.1);color:#6ec96e;border:1px solid rgba(100,200,100,0.2); }
+  .proj-title { font-family:var(--font-display);font-size:clamp(22px,2.4vw,32px);letter-spacing:0.03em;line-height:1.1;margin-bottom:10px; }
+  .proj-rank { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;color:var(--accent);margin-bottom:16px; }
+  .proj-desc { font-size:0.85rem;line-height:1.8;color:rgba(240,236,228,0.52);flex:1;margin-bottom:24px; }
+  .proj-tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:auto; }
+
+  /* SKILLS STRIP */
+  #skills-strip { padding:80px 48px;background:var(--surface);border-top:1px solid var(--border);text-align:center; }
+  .strip-title { font-family:var(--font-display);font-size:clamp(32px,4vw,56px);letter-spacing:0.03em;margin-bottom:40px; }
+  .strip-title span { color:var(--accent); }
+  .strip-pills { display:flex;justify-content:center;flex-wrap:wrap;gap:12px; }
+  .pill { font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;padding:12px 24px;border:1px solid var(--border);color:var(--muted);transition:border-color 0.2s,color 0.2s; }
+  .pill:hover { border-color:var(--accent);color:var(--accent); }
+
+  @media(max-width:900px){
+    nav{padding:18px 24px;} .nav-links{gap:18px;}
+    .page-hero{padding:120px 24px 48px;}
+    .featured-card{grid-template-columns:1fr;} .featured-card-left,.featured-card-right{padding:48px 24px;} .featured-card-right::before{display:none;}
+    #other-projects{padding:60px 24px;} .other-grid{grid-template-columns:1fr;}
+    #skills-strip{padding:60px 24px;}
+    footer{flex-direction:column;gap:10px;text-align:center;padding:24px;}
+  }
+
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div><nav>
+  <a href="index.html" class="nav-logo">W<span>.</span>S</a>
+  <ul class="nav-links">
+    <li><a href="index.html" >Home</a></li>
+    <li><a href="about.html" >เกี่ยวกับ</a></li>
+    <li><a href="index.html#skills" >ทักษะ</a></li>
+    <li><a href="portfolio.html" class='active'>ผลงาน</a></li>
+    <li><a href="index.html#contact" >ติดต่อ</a></li>
+  </ul>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-bg">PORTFOLIO</div>
+  <div class="page-hero-content">
+    <div class="page-eyebrow">ผลงาน / My Work</div>
+    <h1 class="page-title">สิ่งที่<br>ผม<span>สร้าง.</span></h1>
+    <div class="port-meta">4 COMPETITIONS · 2023–2024 · GAME DEVELOPMENT</div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECT -->
+<section id="featured">
+  <div class="featured-card reveal">
+    <div class="featured-card-left">
+      <div>
+        <div class="feat-badge">🥈 รองชนะเลิศ · Best Achievement</div>
+        <h2 class="feat-title">Game Dev<br>Tournament</h2>
+        <div class="feat-rank">อันดับ 2 จาก 38 ทีม · Theme: Hell Paradise · 3-Day Sprint</div>
+        <p class="feat-desc">
+          การแข่งขันพัฒนาเกมภายใต้ธีม <strong style="color:var(--text)">Hell Paradise</strong> มีเวลาทั้งหมด 3 วัน ผมรับหน้าที่สร้างแมพและช่วยเขียนโค้ดบางส่วน ทีมของเราโดดเด่นด้านการวางโครงเกมอย่างรวดเร็วและมีประสิทธิภาพ ทำให้มีเวลาเพียงพอในการ Polish รายละเอียดและแก้ไขบัค<br><br>
+          <em style="font-size:0.83rem;color:rgba(240,236,228,0.35);">A 3-day game jam under the "Hell Paradise" theme. I handled map design and coding support. Our fast initial planning left time to polish — earning 2nd place from 38 teams.</em>
+        </p>
+        <div class="feat-tags">
+          <span class="tag">Game Development</span>
+          <span class="tag">Map Design</span>
+          <span class="tag">Team Coding</span>
+          <span class="tag">Bug Fixing</span>
+          <span class="tag">3-Day Sprint</span>
+        </div>
+      </div>
+    </div>
+    <div class="featured-card-right">
+      <div class="feat-stat-row">
+        <div class="feat-stat">
+          <div class="feat-stat-num">2nd</div>
+          <div class="feat-stat-label">Final Rank</div>
+        </div>
+        <div class="feat-stat">
+          <div class="feat-stat-num">38</div>
+          <div class="feat-stat-label">Total Teams</div>
+        </div>
+        <div class="feat-stat">
+          <div class="feat-stat-num">3</div>
+          <div class="feat-stat-label">Days to Build</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER PROJECTS -->
+<section id="other-projects">
+  <div class="reveal">
+    <div class="section-eyebrow">ผลงานอื่นๆ / Other Work</div>
+    <h2 class="section-title">และ<br>อีกหลายสิ่ง.</h2>
+  </div>
+  <div class="other-grid">
+    <div class="proj-card reveal">
+      <div class="proj-num">02</div>
+      <div class="proj-badge badge-silver">🏅 Top 10</div>
+      <h3 class="proj-title">Global Game Jam</h3>
+      <div class="proj-rank">อันดับ 10 / 32 ทีม · Theme: Mask</div>
+      <p class="proj-desc">
+        พัฒนาเกมแนวเอาตัวรอด + ฆาตกร ด้วย Unity และ C# ผมรับหน้าที่สร้างแมพ และทำงานร่วมกับทีมขนาดใหญ่ ได้ฝึกทักษะการวางแผนและ Teamwork อย่างเข้มข้น<br><br>
+        <em style="color:rgba(240,236,228,0.3);font-size:0.8rem;">Survival + murderer game in Unity &amp; C#. Large-team collaboration, map design role.</em>
+      </p>
+      <div class="proj-tags">
+        <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Map Design</span><span class="tag">Teamwork</span>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.1s">
+      <div class="proj-num">03</div>
+      <div class="proj-badge badge-orange">🔥 Top 50</div>
+      <h3 class="proj-title">Bangmod Hackathon</h3>
+      <div class="proj-rank">รอบ 50 ทีมสุดท้าย · Orange Winter</div>
+      <p class="proj-desc">
+        รับหน้าที่คิดไอเดียหลักของเกม แรงบันดาลใจจากแอปเรียนภาษา ปรับเป็นเกมแนวนักสืบที่ผู้เล่นต้องใช้ภาษาอังกฤษในการไขปริศนาและสืบคดี<br><br>
+        <em style="color:rgba(240,236,228,0.3);font-size:0.8rem;">Detective game using English to solve mysteries — inspired by language learning apps.</em>
+      </p>
+      <div class="proj-tags">
+        <span class="tag">Game Design</span><span class="tag">Concept</span><span class="tag">English</span>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.2s">
+      <div class="proj-num">04</div>
+      <div class="proj-badge badge-green">🏕️ Camp</div>
+      <h3 class="proj-title">ค่ายอยากสร้างเกม S.2</h3>
+      <div class="proj-rank">Python Game Dev Camp · Season 2</div>
+      <p class="proj-desc">
+        จุดเริ่มต้นของทุกอย่าง — ค่ายสอนพัฒนาเกมด้วย Python ผ่าน PyCharm ได้ฝึกพื้นฐานการสร้างเกมและเปิดโอกาสทดลองเครื่องมือใหม่ๆ<br><br>
+        <em style="color:rgba(240,236,228,0.3);font-size:0.8rem;">Where it all started — Python game dev fundamentals through PyCharm.</em>
+      </p>
+      <div class="proj-tags">
+        <span class="tag">Python</span><span class="tag">PyCharm</span><span class="tag">Fundamentals</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS STRIP -->
+<section id="skills-strip">
+  <div class="reveal">
+    <h2 class="strip-title">เครื่องมือ<span>ที่ใช้.</span></h2>
+    <div class="strip-pills">
+      <div class="pill">🐍 Python</div>
+      <div class="pill">🎮 C# / Unity</div>
+      <div class="pill">🌐 HTML</div>
+      <div class="pill">🗺️ Map Design</div>
+      <div class="pill">⚙️ PyCharm</div>
+      <div class="pill">🐛 Bug Fixing</div>
+      <div class="pill">🤝 Team Collaboration</div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
+  <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
+</footer><script>
+
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  function animateCursor(){
+    cursor.style.left=mx+'px';cursor.style.top=my+'px';
+    rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.6)');
+    el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scale(1)');
+  });
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.12});
+  reveals.forEach(r=>obs.observe(r));
+
+
+</script>
+</body>
+</html>

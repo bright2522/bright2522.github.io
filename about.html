@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แนะนำตัว — วิทวัส แซ่ลิ้ม</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sarabun:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #0a0a0a; --surface: #111111; --surface2: #1a1a1a;
+    --accent: #ff3c00; --accent2: #ffb800;
+    --text: #f0ece4; --muted: #888; --border: rgba(255,255,255,0.07);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Sarabun', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; cursor: none; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.4;
+  }
+  .cursor { width:12px;height:12px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%); }
+  .cursor-ring { width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0.6;transition:transform 0.18s ease; }
+  nav {
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);background:rgba(10,10,10,0.85);
+  }
+  .nav-logo { font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.08em;color:var(--text);text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex;gap:36px;list-style:none; }
+  .nav-links a { font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+  .btn-primary { display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:14px 28px;transition:background 0.2s,transform 0.2s; }
+  .btn-primary:hover { background:#e03500;transform:translateY(-2px); }
+  .btn-outline { display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(240,236,228,0.25);color:var(--text);font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:14px 28px;transition:border-color 0.2s,transform 0.2s; }
+  .btn-outline:hover { border-color:var(--accent);color:var(--accent);transform:translateY(-2px); }
+  .section-eyebrow { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:12px; }
+  .section-eyebrow::after { content:'';flex:1;height:1px;background:var(--border); }
+  .section-title { font-family:var(--font-display);font-size:clamp(42px,5vw,72px);line-height:0.95;letter-spacing:0.02em;margin-bottom:32px; }
+  .reveal { opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal.visible { opacity:1;transform:translateY(0); }
+  footer { padding:28px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center; }
+  .footer-copy { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted); }
+  .footer-made { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--muted); }
+  .footer-made span { color:var(--accent); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+
+  .page-hero { min-height:55vh;display:flex;align-items:flex-end;padding:140px 48px 64px;border-bottom:1px solid var(--border);position:relative;overflow:hidden; }
+  .page-hero-bg { position:absolute;font-family:var(--font-display);font-size:clamp(100px,16vw,220px);color:rgba(255,60,0,0.035);top:50%;left:48px;transform:translateY(-50%);white-space:nowrap;pointer-events:none;letter-spacing:0.04em;z-index:0; }
+  .page-hero-content { position:relative;z-index:1;max-width:700px; }
+  .page-eyebrow { font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:14px;opacity:0;animation:fadeUp 0.6s 0.1s forwards; }
+  .page-eyebrow::before { content:'';width:32px;height:1px;background:var(--accent); }
+  .page-title { font-family:var(--font-display);font-size:clamp(60px,9vw,130px);line-height:0.9;letter-spacing:0.02em;margin-bottom:28px;opacity:0;animation:fadeUp 0.7s 0.25s forwards; }
+  .page-title span { color:var(--accent); }
+  .page-subtitle { font-size:1.05rem;line-height:1.75;color:rgba(240,236,228,0.55);max-width:560px;opacity:0;animation:fadeUp 0.7s 0.4s forwards; }
+
+  /* IDENTITY SECTION */
+  #identity { padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;border-bottom:1px solid var(--border); }
+  .identity-left {}
+  .about-text { font-size:1rem;line-height:1.9;color:rgba(240,236,228,0.68);margin-bottom:22px; }
+  .about-info-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px; }
+  .info-item { border-left:2px solid var(--accent);padding-left:16px; }
+  .info-label { font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:4px; }
+  .info-val { font-size:0.9rem;font-weight:600;color:var(--text); }
+  .identity-right { padding-top:40px; }
+  .big-quote { font-family:var(--font-display);font-size:clamp(28px,3.8vw,52px);line-height:1.1;letter-spacing:0.03em;color:rgba(240,236,228,0.1);margin-bottom:48px; }
+  .big-quote em { color:var(--text);font-style:normal; }
+
+  /* TIMELINE */
+  #timeline-section { padding:100px 48px;background:var(--surface);border-bottom:1px solid var(--border); }
+  .tl-grid { display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:56px; }
+  .tl-card { background:var(--bg);padding:36px 36px 32px;border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s; }
+  .tl-card:hover { border-color:rgba(255,60,0,0.3);transform:translateY(-3px); }
+  .tl-card-year { font-family:var(--font-display);font-size:4rem;color:rgba(255,60,0,0.07);line-height:1;margin-bottom:-12px; }
+  .tl-card-badge { display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;padding:4px 12px;margin-bottom:16px; }
+  .badge-gold { background:rgba(255,184,0,0.12);color:var(--accent2);border:1px solid rgba(255,184,0,0.25); }
+  .badge-silver { background:rgba(180,180,180,0.1);color:#aaa;border:1px solid rgba(180,180,180,0.2); }
+  .badge-orange { background:rgba(255,60,0,0.1);color:var(--accent);border:1px solid rgba(255,60,0,0.2); }
+  .badge-green { background:rgba(100,200,100,0.1);color:#6ec96e;border:1px solid rgba(100,200,100,0.2); }
+  .tl-card-title { font-family:var(--font-display);font-size:1.8rem;letter-spacing:0.04em;line-height:1.1;margin-bottom:8px; }
+  .tl-card-role { font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.12em;color:var(--accent);margin-bottom:14px; }
+  .tl-card-desc { font-size:0.85rem;line-height:1.75;color:rgba(240,236,228,0.55); }
+
+  /* VALUES */
+  #values { padding:100px 48px;border-bottom:1px solid var(--border); }
+  .values-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px; }
+  .value-item { padding:36px 32px;border:1px solid var(--border);transition:border-color 0.3s; }
+  .value-item:hover { border-color:rgba(255,60,0,0.2); }
+  .value-num { font-family:var(--font-display);font-size:3.5rem;color:rgba(255,60,0,0.1);line-height:1;margin-bottom:16px; }
+  .value-title { font-family:var(--font-display);font-size:1.5rem;letter-spacing:0.04em;margin-bottom:12px; }
+  .value-desc { font-size:0.85rem;line-height:1.75;color:var(--muted); }
+
+  /* CTA BOTTOM */
+  #about-cta { padding:80px 48px;background:var(--surface);text-align:center; }
+  .about-cta-title { font-family:var(--font-display);font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:0.03em;margin-bottom:24px; }
+  .about-cta-title span { color:var(--accent); }
+  .about-cta-links { display:flex;justify-content:center;gap:16px;flex-wrap:wrap; }
+
+  @media(max-width:900px){
+    nav{padding:18px 24px;} .nav-links{gap:18px;}
+    .page-hero{padding:120px 24px 48px;}
+    #identity{grid-template-columns:1fr;padding:60px 24px;gap:48px;}
+    #timeline-section{padding:60px 24px;} .tl-grid{grid-template-columns:1fr;}
+    #values{padding:60px 24px;} .values-grid{grid-template-columns:1fr;}
+    #about-cta{padding:60px 24px;}
+    footer{flex-direction:column;gap:10px;text-align:center;padding:24px;}
+  }
+
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div><nav>
+  <a href="index.html" class="nav-logo">W<span>.</span>S</a>
+  <ul class="nav-links">
+    <li><a href="index.html" >Home</a></li>
+    <li><a href="about.html" class='active'>เกี่ยวกับ</a></li>
+    <li><a href="index.html#skills" >ทักษะ</a></li>
+    <li><a href="portfolio.html" >ผลงาน</a></li>
+    <li><a href="index.html#contact" >ติดต่อ</a></li>
+  </ul>
+</nav>
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg">ABOUT ME</div>
+  <div class="page-hero-content">
+    <div class="page-eyebrow">แนะนำตัว / About Me</div>
+    <h1 class="page-title">สวัสดี<br>ครับ<span>.</span></h1>
+    <p class="page-subtitle">
+      ผมคือวิทวัส แซ่ลิ้ม — นักเรียนสายวิทย์-คณิตที่หลงใหลในโลกของ Game Development และการเขียนโค้ด
+      ทุกการแข่งขัน ทุก Bug และทุก Project ล้วนเป็นบทเรียนที่ผมเก็บเกี่ยวไว้<br><br>
+      <em style="color:rgba(240,236,228,0.35);font-size:0.9rem;">Hi, I'm Wittawat Sae-Lim — a Science-Math student who builds games, writes code, and grows through every challenge.</em>
+    </p>
+  </div>
+</section>
+
+<!-- IDENTITY -->
+<section id="identity">
+  <div class="identity-left reveal">
+    <div class="section-eyebrow">ตัวตน / Who I Am</div>
+    <p class="about-text">
+      ผมเป็นนักเรียนสายวิทย์-คณิตที่ไม่ได้หยุดอยู่แค่ในห้องเรียน ความสนใจในการพัฒนาเกมพาผมไปสู่การแข่งขัน Game Jam หลายรายการ ซึ่งแต่ละครั้งผมได้เรียนรู้ทั้งการทำงานเป็นทีม การวางแผนภายใต้เวลาจำกัด และการแก้ปัญหาเฉพาะหน้า
+    </p>
+    <p class="about-text">
+      ผลงานที่ภูมิใจมากที่สุดคือรางวัลรองชนะเลิศจากการแข่งขัน Game Dev Tournament จาก 38 ทีม ซึ่งสะท้อนให้เห็นว่าการวางแผนที่ดีและการทำงานเป็นทีมที่มีประสิทธิภาพสามารถสร้างความแตกต่างได้จริง
+    </p>
+    <p class="about-text" style="font-size:0.88rem;font-style:italic;color:rgba(240,236,228,0.35);">
+      I'm a Science-Math student who competes in game jams, writes code daily, and believes every bug fixed is a lesson learned. My proudest moment: 2nd place out of 38 teams in Game Dev Tournament.
+    </p>
+    <div class="about-info-grid">
+      <div class="info-item"><div class="info-label">สายการเรียน</div><div class="info-val">วิทย์-คณิต</div></div>
+      <div class="info-item"><div class="info-label">ความสนใจ</div><div class="info-val">Game Dev, Coding</div></div>
+      <div class="info-item"><div class="info-label">ภาษาที่ใช้</div><div class="info-val">Python · C# · HTML</div></div>
+      <div class="info-item"><div class="info-label">Tools</div><div class="info-val">Unity · PyCharm</div></div>
+      <div class="info-item"><div class="info-label">Email</div><div class="info-val" style="font-size:0.78rem;">brightpungporn37@gmail.com</div></div>
+      <div class="info-item"><div class="info-label">GitHub</div><div class="info-val">bright2522</div></div>
+    </div>
+  </div>
+  <div class="identity-right reveal" style="transition-delay:0.15s">
+    <div class="big-quote">
+      "ทุกบัคที่แก้<br>คือ<em> บทเรียน</em><br>ที่ดีที่สุด"
+    </div>
+    <p style="font-size:0.82rem;color:var(--muted);line-height:1.8;">
+      แนวคิดนี้คือสิ่งที่ผมยึดถือทุกครั้งที่เขียนโค้ด ไม่มีโปรเจกต์ไหนที่สมบูรณ์แบบตั้งแต่วันแรก แต่ทุก Iteration คือก้าวหน้าที่วัดได้<br><br>
+      <em style="color:rgba(240,236,228,0.3);">This mindset guides every project I build. No code is perfect on day one — but every iteration is measurable progress.</em>
+    </p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline-section">
+  <div class="reveal">
+    <div class="section-eyebrow">ประสบการณ์ / Experience</div>
+    <h2 class="section-title">สิ่งที่<br>ผ่านมา.</h2>
+  </div>
+  <div class="tl-grid">
+    <div class="tl-card reveal">
+      <div class="tl-card-year">23</div>
+      <div class="tl-card-badge badge-gold">🥈 รองชนะเลิศ</div>
+      <div class="tl-card-title">Game Dev Tournament</div>
+      <div class="tl-card-role">อันดับ 2 / 38 ทีม · Map Builder + Coder · Theme: Hell Paradise</div>
+      <p class="tl-card-desc">แข่งขันพัฒนาเกมภายใน 3 วัน รับหน้าที่สร้างแมพและช่วยเขียนโค้ด ทีมของเราวางโครงได้รวดเร็ว มีเวลาเพียงพอในการ Polish และแก้บัค</p>
+    </div>
+    <div class="tl-card reveal" style="transition-delay:0.1s">
+      <div class="tl-card-year">23</div>
+      <div class="tl-card-badge badge-green">🏕️ Camp</div>
+      <div class="tl-card-title">ค่ายอยากสร้างเกม S.2</div>
+      <div class="tl-card-role">Python Game Dev Camp · Participant</div>
+      <p class="tl-card-desc">จุดเริ่มต้นของ Game Dev journey ได้เรียนรู้พื้นฐานการสร้างเกมด้วย Python และ PyCharm เปิดโอกาสทดลองเครื่องมือใหม่ๆ ในการพัฒนาเกม</p>
+    </div>
+    <div class="tl-card reveal" style="transition-delay:0.05s">
+      <div class="tl-card-year">24</div>
+      <div class="tl-card-badge badge-silver">🏅 Top 10</div>
+      <div class="tl-card-title">Global Game Jam</div>
+      <div class="tl-card-role">อันดับ 10 / 32 ทีม · Map Builder · Theme: Mask</div>
+      <p class="tl-card-desc">พัฒนาเกมแนวเอาตัวรอด + ฆาตกร ด้วย Unity และ C# ทำงานร่วมกับทีมขนาดใหญ่ ได้ฝึกทักษะการวางแผนและ Collaboration อย่างเข้มข้น</p>
+    </div>
+    <div class="tl-card reveal" style="transition-delay:0.15s">
+      <div class="tl-card-year">24</div>
+      <div class="tl-card-badge badge-orange">🔥 Top 50</div>
+      <div class="tl-card-title">Bangmod Hackathon</div>
+      <div class="tl-card-role">รอบ 50 ทีมสุดท้าย · Orange Winter · Game Designer</div>
+      <p class="tl-card-desc">รับหน้าที่คิดไอเดียหลักของเกม แรงบันดาลใจจากแอปเรียนภาษา ปรับเป็นเกมแนวนักสืบที่ผู้เล่นต้องใช้ภาษาอังกฤษในการไขปริศนา</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="reveal">
+    <div class="section-eyebrow">สิ่งที่ผมเชื่อ / What I Believe</div>
+    <h2 class="section-title">แนวคิด<br>ของผม.</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-item reveal">
+      <div class="value-num">01</div>
+      <div class="value-title">Build Fast, Learn Faster</div>
+      <p class="value-desc">การทำ Game Jam สอนให้ผมรู้ว่าการสร้างอะไรบางอย่างให้เสร็จในเวลาจำกัด สำคัญกว่าการรอให้สมบูรณ์แบบ</p>
+    </div>
+    <div class="value-item reveal" style="transition-delay:0.1s">
+      <div class="value-num">02</div>
+      <div class="value-title">Teamwork Wins Games</div>
+      <p class="value-desc">จากทุก Competition ผมเรียนรู้ว่าทีมที่สื่อสารดีและวางแผนร่วมกันได้เปรียบกว่าทีมที่มีทักษะเดี่ยวเหนือกว่าเสมอ</p>
+    </div>
+    <div class="value-item reveal" style="transition-delay:0.2s">
+      <div class="value-num">03</div>
+      <div class="value-title">Every Bug is a Lesson</div>
+      <p class="value-desc">ไม่มีโค้ดที่สมบูรณ์แบบตั้งแต่แรก ทุก Error คือโอกาสที่จะเข้าใจระบบได้ลึกขึ้น และเขียนโค้ดได้ดีขึ้นในครั้งต่อไป</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="about-cta">
+  <div class="reveal">
+    <h2 class="about-cta-title">ดู<span>ผลงาน</span><br>ของผมได้เลย</h2>
+    <p style="font-size:0.95rem;color:var(--muted);margin-bottom:36px;line-height:1.7;">สนใจที่มาของแต่ละ Project? ไปดูรายละเอียดทั้งหมดได้เลยครับ</p>
+    <div class="about-cta-links">
+      <a href="portfolio.html" class="btn-primary">↓ ดูผลงานทั้งหมด</a>
+      <a href="mailto:brightpungporn37@gmail.com" class="btn-outline">✉ ติดต่อผม</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
+  <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
+</footer><script>
+
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  function animateCursor(){
+    cursor.style.left=mx+'px';cursor.style.top=my+'px';
+    rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.6)');
+    el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scale(1)');
+  });
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.12});
+  reveals.forEach(r=>obs.observe(r));
+
+
+</script>
+</body>
+</html>
