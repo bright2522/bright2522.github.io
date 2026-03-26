@@ -47,7 +47,7 @@
   .section-eyebrow { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:12px; }
   .section-eyebrow::after { content:'';flex:1;height:1px;background:var(--border); }
   .section-title { font-family:var(--font-display);font-size:clamp(42px,5vw,72px);line-height:0.95;letter-spacing:0.02em;margin-bottom:32px; }
-  .reveal { opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal { opacity:1;transform:translateY(0);transition:opacity 0.7s ease,transform 0.7s ease; }
   .reveal.visible { opacity:1;transform:translateY(0); }
   footer { padding:28px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center; }
   .footer-copy { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted); }
@@ -65,9 +65,9 @@
   .hero-tag::before { content:'';display:block;width:32px;height:1px;background:var(--accent); }
   .hero-name { font-family:var(--font-display);font-size:clamp(56px,7vw,110px);line-height:0.92;letter-spacing:0.02em;margin-bottom:28px;animation:fadeUp 0.7s 0.35s both; }
   .hero-name .line2 { color:var(--accent); }
-  .hero-desc { font-size:1.05rem;line-height:1.75;color:rgba(240,236,228,0.65);max-width:440px;margin-bottom:40px;opacity:0;animation:fadeUp 0.7s 0.5s forwards; }
-  .hero-cta { display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.7s 0.65s forwards; }
-  .hero-visual { position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:20px;opacity:0;animation:fadeIn 1s 0.6s forwards; }
+  .hero-desc { font-size:1.05rem;line-height:1.75;color:rgba(240,236,228,0.65);max-width:440px;margin-bottom:40px;animation:fadeUp 0.7s 0.5s both; }
+  .hero-cta { display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp 0.7s 0.65s both; }
+  .hero-visual { position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:20px;animation:fadeIn 1s 0.6s both; }
   .hero-avatar { width:100%;max-width:360px;aspect-ratio:1/0.7;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden; }
   .hero-avatar::before { content:'';position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,rgba(255,60,0,0.14),transparent 70%); }
   .hero-avatar-letter { font-family:var(--font-display);font-size:8rem;color:var(--accent);line-height:1;opacity:0.9;position:relative;z-index:1;text-shadow:0 0 60px rgba(255,60,0,0.5); }
@@ -80,7 +80,7 @@
   .hero-stat { flex:1;background:var(--surface);border:1px solid var(--border);padding:20px 22px; }
   .stat-num { font-family:var(--font-display);font-size:1.8rem;color:var(--accent2); }
   .stat-label { font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:4px; }
-  .scroll-hint { position:absolute;bottom:36px;left:48px;display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeIn 1s 1.2s forwards; }
+  .scroll-hint { position:absolute;bottom:36px;left:48px;display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);animation:fadeIn 1s 1.2s both; }
   .scroll-line { width:48px;height:1px;background:linear-gradient(to right,var(--accent),transparent);animation:scrollPulse 2s infinite; }
 
   /* SKILLS */
@@ -343,7 +343,7 @@
         </div>
         <div class="social-card-platform">Facebook</div>
         <div class="social-card-handle">brigth2522</div>
-        <div class="social-card-desc">ติดตามข่าวสารและโปรเจกต์ใหม่ๆ ได้ที่นี่</div>
+        <div class="social-card-desc">ไม่มีไรครับ ใส่มาเฉยๆ</div>
         <div class="social-card-arrow">Visit profile <span>→</span></div>
       </a>
 
@@ -355,7 +355,7 @@
           </svg>
         </div>
         <div class="social-card-platform">Email</div>
-        <div class="social-card-handle"><span class="__cf_email__" data-cfemail="7801170d0a381d15191114561b1715">[email&#160;protected]</span></div>
+        <div class="social-card-handle">brightpungporn37@gmail.com</div>
         <div class="social-card-desc">ติดต่อโดยตรงสำหรับงาน Collaboration หรือสอบถามต่างๆ</div>
         <div class="social-card-arrow">Send mail <span>→</span></div>
       </a>
