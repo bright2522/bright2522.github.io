@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sarabun:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  /* Font fallbacks if Google Fonts fails to load */
   @font-face { font-family: 'Bebas Neue'; src: local('Impact'), local('Arial Black'); font-display: swap; }
 </style>
 <style>
@@ -100,12 +99,62 @@
   .skill-level-text { font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;color:var(--muted);margin-top:8px;text-transform:uppercase; }
 
   /* CONTACT */
-  #contact { padding:120px 48px;border-top:1px solid var(--border);background:var(--bg);text-align:center;position:relative;overflow:hidden; }
+  #contact { padding:120px 48px 80px;border-top:1px solid var(--border);background:var(--bg);text-align:center;position:relative;overflow:hidden; }
   .contact-bg { position:absolute;font-family:var(--font-display);font-size:clamp(80px,14vw,200px);color:rgba(255,60,0,0.03);bottom:-20px;left:50%;transform:translateX(-50%);white-space:nowrap;pointer-events:none;letter-spacing:0.1em; }
   .contact-title { font-family:var(--font-display);font-size:clamp(48px,7vw,100px);line-height:0.95;letter-spacing:0.02em;margin-bottom:24px; }
   .contact-title span { color:var(--accent); }
   .contact-sub { font-size:1rem;color:var(--muted);margin-bottom:48px;line-height:1.7; }
-  .contact-links { display:flex;justify-content:center;gap:16px;flex-wrap:wrap; }
+  .contact-links { display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:72px; }
+
+  /* SOCIAL GRID — new */
+  .social-grid-wrap { position:relative;z-index:1;max-width:860px;margin:0 auto; }
+  .social-grid-eyebrow { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;gap:12px;justify-content:center; }
+  .social-grid-eyebrow::before,
+  .social-grid-eyebrow::after { content:'';flex:1;height:1px;background:var(--border); }
+  .social-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:2px; }
+  .social-card {
+    background:var(--surface);
+    border:1px solid var(--border);
+    padding:28px 24px 24px;
+    text-decoration:none;
+    display:flex;flex-direction:column;gap:14px;
+    position:relative;overflow:hidden;
+    transition:background 0.25s, transform 0.25s, border-color 0.25s;
+    text-align:left;
+  }
+  .social-card::after {
+    content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;
+    transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .social-card:hover { background:#161616;transform:translateY(-4px);border-color:rgba(255,60,0,0.2); }
+  .social-card:hover::after { transform:scaleX(1); }
+  .social-card-icon {
+    width:44px;height:44px;border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.3rem;background:var(--bg);
+    transition:border-color 0.25s;
+  }
+  .social-card:hover .social-card-icon { border-color:var(--accent); }
+  .social-card-platform {
+    font-family:var(--font-display);font-size:1.5rem;letter-spacing:0.06em;
+    color:var(--text);line-height:1;
+  }
+  .social-card-handle {
+    font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.12em;
+    color:var(--accent);
+  }
+  .social-card-desc {
+    font-size:0.78rem;line-height:1.55;color:var(--muted);
+    flex:1;
+  }
+  .social-card-arrow {
+    font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;
+    color:var(--muted);transition:color 0.2s,transform 0.2s;
+    display:flex;align-items:center;gap:6px;
+    margin-top:4px;
+  }
+  .social-card:hover .social-card-arrow { color:var(--accent);transform:translateX(4px); }
 
   /* Quick About Strip */
   #quick-about { padding:80px 48px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center; }
@@ -118,25 +167,32 @@
     #hero{grid-template-columns:1fr;padding:120px 24px 80px;} .hero-visual{align-items:stretch;}
     #quick-about{grid-template-columns:1fr;padding:60px 24px;gap:36px;}
     #skills{padding:80px 24px;} .skills-grid{grid-template-columns:1fr;}
-    #contact{padding:80px 24px;}
+    #contact{padding:80px 24px 60px;}
+    .social-grid{grid-template-columns:repeat(2,1fr);}
     footer{flex-direction:column;gap:10px;text-align:center;padding:24px;}
     .scroll-hint{left:24px;}
+  }
+  @media(max-width:520px){
+    .social-grid{grid-template-columns:1fr;}
   }
 
 </style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div><nav>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
   <a href="index.html" class="nav-logo">W<span>.</span>S</a>
   <ul class="nav-links">
     <li><a href="index.html" class='active'>Home</a></li>
-    <li><a href="about.html" >เกี่ยวกับ</a></li>
-    <li><a href="index.html#skills" >ทักษะ</a></li>
-    <li><a href="portfolio.html" >ผลงาน</a></li>
-    <li><a href="index.html#contact" >ติดต่อ</a></li>
+    <li><a href="about.html">เกี่ยวกับ</a></li>
+    <li><a href="index.html#skills">ทักษะ</a></li>
+    <li><a href="portfolio.html">ผลงาน</a></li>
+    <li><a href="index.html#contact">ติดต่อ</a></li>
   </ul>
 </nav>
+
 <section id="hero">
   <div class="hero-bg-text">GAME DEV</div>
   <div class="hero-content">
@@ -227,32 +283,90 @@
       <em style="font-size:0.85rem;">Interested in collaborating, sharing ideas, or just saying hi — always welcome!</em>
     </p>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#d4b6a6bdb3bca0a4a1bab3a4bba6bae7e394b3b9b5bdb8fab7bbb9" class="btn-primary">✉ ส่ง Email</a>
+      <a href="mailto:your@email.com" class="btn-primary">✉ ส่ง Email</a>
       <a href="https://github.com/bright2522" target="_blank" class="btn-outline">GitHub →</a>
-      <a href="https://www.instagram.com/akira_bright_/" target="_blank" class="btn-outline">Instagram →</a>
-      <a href="https://www.facebook.com/brigth2522" target="_blank" class="btn-outline">Facebook →</a>
     </div>
   </div>
+
+  <!-- ── Social Links Info Grid ── -->
+  <div class="social-grid-wrap reveal" style="transition-delay:0.15s">
+    <div class="social-grid-eyebrow">Social Links / ช่องทางติดตาม</div>
+    <div class="social-grid">
+
+      <a href="https://github.com/bright2522" target="_blank" class="social-card">
+        <div class="social-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </div>
+        <div class="social-card-platform">GitHub</div>
+        <div class="social-card-handle">@bright2522</div>
+        <div class="social-card-desc">Source code, game projects และ repositories ทั้งหมด</div>
+        <div class="social-card-arrow">Visit profile <span>→</span></div>
+      </a>
+
+      <a href="https://www.instagram.com/akira_bright_/" target="_blank" class="social-card">
+        <div class="social-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </div>
+        <div class="social-card-platform">Instagram</div>
+        <div class="social-card-handle">@akira_bright_</div>
+        <div class="social-card-desc">ชีวิตประจำวัน ความสนใจ และอัปเดตต่างๆ</div>
+        <div class="social-card-arrow">Visit profile <span>→</span></div>
+      </a>
+
+      <a href="https://www.facebook.com/brigth2522" target="_blank" class="social-card">
+        <div class="social-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </div>
+        <div class="social-card-platform">Facebook</div>
+        <div class="social-card-handle">brigth2522</div>
+        <div class="social-card-desc">มันไม่มีไรครับ ใส่ไว้เฉยๆ</div>
+        <div class="social-card-arrow">Visit profile <span>→</span></div>
+      </a>
+
+      <a href="mailto:your@email.com" class="social-card">
+        <div class="social-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="social-card-platform">Email</div>
+        <div class="social-card-handle">brightpungporn37@gmail.com</div>
+        <div class="social-card-desc">ติดต่อโดยตรงสำหรับงาน Collaboration หรือสอบถามต่างๆ</div>
+        <div class="social-card-arrow">Send mail <span>→</span></div>
+      </a>
+
+    </div>
+  </div>
+  <!-- ── /Social Links Info Grid ── -->
+
 </section>
+
 <footer>
   <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
   <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
-</footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-  // Fallback: ensure content is visible even if fonts fail
+</footer>
+
+<script>
   window.addEventListener('load', function() {
-    document.querySelectorAll('.hero-tag, .hero-name, .hero-desc, .hero-cta, .hero-visual, .scroll-hint, .page-eyebrow, .page-title, .page-subtitle, .port-meta').forEach(el => {
+    document.querySelectorAll('.hero-tag, .hero-name, .hero-desc, .hero-cta, .hero-visual, .scroll-hint').forEach(el => {
       el.style.opacity = '1';
       el.style.transform = 'none';
     });
   });
-  // Also trigger after 1.5s as safety net
   setTimeout(function() {
     document.querySelectorAll('[style*="opacity: 0"], [style*="opacity:0"]').forEach(el => {
       el.style.opacity = '1';
     });
   }, 1500);
-
-</script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -269,11 +383,23 @@
     el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.6)');
     el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scale(1)');
   });
+
   const reveals=document.querySelectorAll('.reveal');
   const obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
   },{threshold:0.12});
   reveals.forEach(r=>obs.observe(r));
 
-
-  const skillObserver=n
+  const skillObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.querySelectorAll('.skill-level-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width;
+        });
+      }
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('.skill-block').forEach(b=>skillObserver.observe(b));
+</script>
+</body>
+</html>
