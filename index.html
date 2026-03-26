@@ -7,6 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sarabun:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+  /* Font fallbacks if Google Fonts fails to load */
+  @font-face { font-family: 'Bebas Neue'; src: local('Impact'), local('Arial Black'); font-display: swap; }
+</style>
+<style>
 
   :root {
     --bg: #0a0a0a; --surface: #111111; --surface2: #1a1a1a;
@@ -50,7 +54,7 @@
   .footer-copy { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted); }
   .footer-made { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--muted); }
   .footer-made span { color:var(--accent); }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fadeIn { from{opacity:0} to{opacity:1} }
   @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
 
@@ -58,9 +62,9 @@
   #hero { min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 48px 80px;gap:60px;overflow:hidden;position:relative; }
   .hero-bg-text { position:absolute;font-family:var(--font-display);font-size:clamp(120px,18vw,240px);color:rgba(255,60,0,0.04);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:-0.02em;z-index:0; }
   .hero-content { position:relative;z-index:1; }
-  .hero-tag { display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp 0.7s 0.2s forwards; }
+  .hero-tag { display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;animation:fadeUp 0.7s 0.2s both; }
   .hero-tag::before { content:'';display:block;width:32px;height:1px;background:var(--accent); }
-  .hero-name { font-family:var(--font-display);font-size:clamp(56px,7vw,110px);line-height:0.92;letter-spacing:0.02em;margin-bottom:28px;opacity:0;animation:fadeUp 0.7s 0.35s forwards; }
+  .hero-name { font-family:var(--font-display);font-size:clamp(56px,7vw,110px);line-height:0.92;letter-spacing:0.02em;margin-bottom:28px;animation:fadeUp 0.7s 0.35s both; }
   .hero-name .line2 { color:var(--accent); }
   .hero-desc { font-size:1.05rem;line-height:1.75;color:rgba(240,236,228,0.65);max-width:440px;margin-bottom:40px;opacity:0;animation:fadeUp 0.7s 0.5s forwards; }
   .hero-cta { display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.7s 0.65s forwards; }
@@ -223,7 +227,7 @@
       <em style="font-size:0.85rem;">Interested in collaborating, sharing ideas, or just saying hi — always welcome!</em>
     </p>
     <div class="contact-links">
-      <a href="mailto:brightpungporn37@gmail.com" class="btn-primary">✉ ส่ง Email</a>
+      <a href="/cdn-cgi/l/email-protection#d4b6a6bdb3bca0a4a1bab3a4bba6bae7e394b3b9b5bdb8fab7bbb9" class="btn-primary">✉ ส่ง Email</a>
       <a href="https://github.com/bright2522" target="_blank" class="btn-outline">GitHub →</a>
       <a href="https://www.instagram.com/akira_bright_/" target="_blank" class="btn-outline">Instagram →</a>
       <a href="https://www.facebook.com/brigth2522" target="_blank" class="btn-outline">Facebook →</a>
@@ -233,7 +237,22 @@
 <footer>
   <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
   <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
-</footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+</footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+  // Fallback: ensure content is visible even if fonts fail
+  window.addEventListener('load', function() {
+    document.querySelectorAll('.hero-tag, .hero-name, .hero-desc, .hero-cta, .hero-visual, .scroll-hint, .page-eyebrow, .page-title, .page-subtitle, .port-meta').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  });
+  // Also trigger after 1.5s as safety net
+  setTimeout(function() {
+    document.querySelectorAll('[style*="opacity: 0"], [style*="opacity:0"]').forEach(el => {
+      el.style.opacity = '1';
+    });
+  }, 1500);
+
+</script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -257,6 +276,4 @@
   reveals.forEach(r=>obs.observe(r));
 
 
-  const skillObserver=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){e.target.querySelectorAll('.skill-level-fill').forEach(b=>{b.style.wid
+  const skillObserver=n
