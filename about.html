@@ -6,6 +6,7 @@
 <title>แนะนำตัว — วิทวัส แซ่ลิ้ม</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sarabun:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>@font-face { font-family: 'Bebas Neue'; src: local('Impact'), local('Arial Black'); font-display: swap; }</style>
 <style>
 
   :root {
@@ -50,7 +51,7 @@
   .footer-copy { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted); }
   .footer-made { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--muted); }
   .footer-made span { color:var(--accent); }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fadeIn { from{opacity:0} to{opacity:1} }
   @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
 
@@ -58,11 +59,11 @@
   .page-hero { min-height:55vh;display:flex;align-items:flex-end;padding:140px 48px 64px;border-bottom:1px solid var(--border);position:relative;overflow:hidden; }
   .page-hero-bg { position:absolute;font-family:var(--font-display);font-size:clamp(100px,16vw,220px);color:rgba(255,60,0,0.035);top:50%;left:48px;transform:translateY(-50%);white-space:nowrap;pointer-events:none;letter-spacing:0.04em;z-index:0; }
   .page-hero-content { position:relative;z-index:1;max-width:700px; }
-  .page-eyebrow { font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:14px;opacity:0;animation:fadeUp 0.6s 0.1s forwards; }
+  .page-eyebrow { font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:14px;animation:fadeUp 0.6s 0.1s both; }
   .page-eyebrow::before { content:'';width:32px;height:1px;background:var(--accent); }
-  .page-title { font-family:var(--font-display);font-size:clamp(60px,9vw,130px);line-height:0.9;letter-spacing:0.02em;margin-bottom:28px;opacity:0;animation:fadeUp 0.7s 0.25s forwards; }
+  .page-title { font-family:var(--font-display);font-size:clamp(60px,9vw,130px);line-height:0.9;letter-spacing:0.02em;margin-bottom:28px;animation:fadeUp 0.7s 0.25s both; }
   .page-title span { color:var(--accent); }
-  .page-subtitle { font-size:1.05rem;line-height:1.75;color:rgba(240,236,228,0.55);max-width:560px;opacity:0;animation:fadeUp 0.7s 0.4s forwards; }
+  .page-subtitle { font-size:1.05rem;line-height:1.75;color:rgba(240,236,228,0.55);max-width:560px;animation:fadeUp 0.7s 0.4s both; }
 
   /* IDENTITY SECTION */
   #identity { padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;border-bottom:1px solid var(--border); }
@@ -247,7 +248,7 @@
     <p style="font-size:0.95rem;color:var(--muted);margin-bottom:36px;line-height:1.7;">สนใจที่มาของแต่ละ Project? ไปดูรายละเอียดทั้งหมดได้เลยครับ</p>
     <div class="about-cta-links">
       <a href="portfolio.html" class="btn-primary">↓ ดูผลงานทั้งหมด</a>
-      <a href="mailto:brightpungporn37@gmail.com" class="btn-outline">✉ ติดต่อผม</a>
+      <a href="/cdn-cgi/l/email-protection#a5c7d7ccc2cdd1d5d0cbc2d5cad7cb9692e5c2c8c4ccc98bc6cac8" class="btn-outline">✉ ติดต่อผม</a>
       <a href="https://www.instagram.com/akira_bright_/" target="_blank" class="btn-outline">IG →</a>
       <a href="https://www.facebook.com/brigth2522" target="_blank" class="btn-outline">FB →</a>
     </div>
@@ -256,7 +257,22 @@
 <footer>
   <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
   <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
-</footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+</footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+  // Fallback: ensure content is visible even if fonts fail
+  window.addEventListener('load', function() {
+    document.querySelectorAll('.hero-tag, .hero-name, .hero-desc, .hero-cta, .hero-visual, .scroll-hint, .page-eyebrow, .page-title, .page-subtitle, .port-meta').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  });
+  // Also trigger after 1.5s as safety net
+  setTimeout(function() {
+    document.querySelectorAll('[style*="opacity: 0"], [style*="opacity:0"]').forEach(el => {
+      el.style.opacity = '1';
+    });
+  }, 1500);
+
+</script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -270,5 +286,4 @@
   }
   animateCursor();
   document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.6)');
-    el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scal
+    el.addEventListener('mous
