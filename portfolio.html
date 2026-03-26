@@ -6,14 +6,13 @@
 <title>ผลงาน — วิทวัส แซ่ลิ้ม</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sarabun:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>@font-face { font-family: 'Bebas Neue'; src: local('Impact'), local('Arial Black'); font-display: swap; }</style>
 <style>
 
   :root {
     --bg: #0a0a0a; --surface: #111111; --surface2: #1a1a1a;
     --accent: #ff3c00; --accent2: #ffb800;
     --text: #f0ece4; --muted: #888; --border: rgba(255,255,255,0.07);
-    --font-display: 'Bebas Neue', sans-serif;
+    --font-display: 'Bebas Neue', 'Impact', sans-serif;
     --font-body: 'Sarabun', sans-serif;
     --font-mono: 'Space Mono', monospace;
   }
@@ -45,16 +44,18 @@
   .section-eyebrow { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:12px; }
   .section-eyebrow::after { content:'';flex:1;height:1px;background:var(--border); }
   .section-title { font-family:var(--font-display);font-size:clamp(42px,5vw,72px);line-height:0.95;letter-spacing:0.02em;margin-bottom:32px; }
-  .reveal { opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease; }
-  .reveal.visible { opacity:1;transform:translateY(0); }
+
+  /* ── FIX: reveal starts visible; JS adds animation only if supported ── */
+  .reveal { opacity:1; transform:none; transition:opacity 0.7s ease, transform 0.7s ease; }
+  .js-ready .reveal { opacity:0; transform:translateY(30px); }
+  .js-ready .reveal.visible { opacity:1; transform:translateY(0); }
+
   footer { padding:28px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center; }
   .footer-copy { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted); }
   .footer-made { font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--muted); }
   .footer-made span { color:var(--accent); }
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
-
 
   .page-hero { min-height:50vh;display:flex;align-items:flex-end;padding:140px 48px 64px;border-bottom:1px solid var(--border);position:relative;overflow:hidden; }
   .page-hero-bg { position:absolute;font-family:var(--font-display);font-size:clamp(100px,16vw,220px);color:rgba(255,60,0,0.035);top:50%;left:48px;transform:translateY(-50%);white-space:nowrap;pointer-events:none;z-index:0; }
@@ -118,16 +119,19 @@
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div><nav>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
   <a href="index.html" class="nav-logo">W<span>.</span>S</a>
   <ul class="nav-links">
-    <li><a href="index.html" >Home</a></li>
-    <li><a href="about.html" >เกี่ยวกับ</a></li>
-    <li><a href="index.html#skills" >ทักษะ</a></li>
-    <li><a href="portfolio.html" class='active'>ผลงาน</a></li>
-    <li><a href="index.html#contact" >ติดต่อ</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">เกี่ยวกับ</a></li>
+    <li><a href="index.html#skills">ทักษะ</a></li>
+    <li><a href="portfolio.html" class="active">ผลงาน</a></li>
+    <li><a href="index.html#contact">ติดต่อ</a></li>
   </ul>
 </nav>
+
 <section class="page-hero">
   <div class="page-hero-bg">PORTFOLIO</div>
   <div class="page-hero-content">
@@ -247,48 +251,58 @@
   <div class="reveal">
     <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#888;margin-bottom:24px;">ติดต่อ / Connect</p>
     <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
-      <a href="/cdn-cgi/l/email-protection#b6d4c4dfd1dec2c6c3d8d1c6d9c4d88581f6d1dbd7dfda98d5d9db" class="btn-primary">✉ Email</a>
+      <a href="mailto:your@email.com" class="btn-primary">✉ Email</a>
       <a href="https://github.com/bright2522" target="_blank" class="btn-outline">GitHub →</a>
       <a href="https://www.instagram.com/akira_bright_/" target="_blank" class="btn-outline">Instagram →</a>
       <a href="https://www.facebook.com/brigth2522" target="_blank" class="btn-outline">Facebook →</a>
     </div>
   </div>
 </section>
+
 <footer>
   <div class="footer-copy">© 2025 วิทวัส แซ่ลิ้ม — All rights reserved.</div>
   <div class="footer-made">Designed &amp; Built with <span>♥</span></div>
-</footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-  // Fallback: ensure content is visible even if fonts fail
-  window.addEventListener('load', function() {
-    document.querySelectorAll('.hero-tag, .hero-name, .hero-desc, .hero-cta, .hero-visual, .scroll-hint, .page-eyebrow, .page-title, .page-subtitle, .port-meta').forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
-  });
-  // Also trigger after 1.5s as safety net
-  setTimeout(function() {
-    document.querySelectorAll('[style*="opacity: 0"], [style*="opacity:0"]').forEach(el => {
-      el.style.opacity = '1';
-    });
-  }, 1500);
+</footer>
 
-</script><script>
-
+<script>
+  // ── Cursor ──────────────────────────────────────────────
   const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-  function animateCursor(){
-    cursor.style.left=mx+'px';cursor.style.top=my+'px';
-    rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
-    ring.style.left=rx+'px';ring.style.top=ry+'px';
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animateCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
     requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.6)');
-    el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scale(1)');
+  })();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.style.transform = 'translate(-50%,-50%) scale(1.6)');
+    el.addEventListener('mouseleave', () => ring.style.transform = 'translate(-50%,-50%) scale(1)');
   });
-  const reveals=document.querySelectorAll('.reveal');
-  const obs=new IntersectionObserver(entries=>{
-    entries.f
+
+  // ── Scroll Reveal ────────────────────────────────────────
+  // Mark body as JS-ready so CSS hides .reveal elements
+  document.body.classList.add('js-ready');
+
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => obs.observe(el));
+
+  // ── Safety fallback: show everything after 2s ────────────
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 2000);
+</script>
+</body>
+</html>
